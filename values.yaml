@@ -20,7 +20,8 @@ image:
 ## Optionally specify an array of imagePullSecrets.
 ## Secrets must be manually created in the namespace.
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
-imagePullSecrets: []
+imagePullSecrets:
+  []
   #  - RegistryKeySecret
 
 ## Deployment annotations
@@ -50,7 +51,8 @@ service:
   # targetPort: 4181 To be used with a proxy extraContainer
   portName: http
 
-  annotations: {}
+  annotations:
+    {}
     ## Special annotations at the service level, e.g
     ## this will set vnet internal IP's rather than public ip's
     ## service.beta.kubernetes.io/azure-load-balancer-internal: "true"
@@ -87,7 +89,8 @@ hostAliases:
 ## Strategy used to replace old Pods by new ones
 ## Ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
 ##
-strategy: {}
+strategy:
+  {}
   # type: RollingUpdate
   # rollingUpdate:
   #   maxSurge: 0
@@ -155,7 +158,8 @@ ingress:
   # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
   # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
   # ingressClassName: nginx
-  annotations: {}
+  annotations:
+    {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   labels: {}
@@ -171,14 +175,16 @@ ingress:
 
 # Additional config maps to be mounted inside a container
 # Can be used to map config maps for sidecar as well
-extraConfigmapMounts: []
+extraConfigmapMounts:
+  []
   # - name: certs-configmap
   #   mountPath: /etc/ssl/certs
   #   subPath: ""
   #   configMap: certs-configmap
   #   readOnly: true
 
-extraSecretMounts: []
+extraSecretMounts:
+  []
   # - name: pgpassfile
   #   secret: pgpassfile
   #   subPath: pgpassfile
@@ -242,17 +248,20 @@ env:
   #   value: "8080"
 
 ## Additional environment variables from ConfigMaps
-envVarsFromConfigMaps: []
+envVarsFromConfigMaps:
+  []
   # - array-of
   # - config-map-names
 
 ## Additional environment variables from Secrets
-envVarsFromSecrets: []
+envVarsFromSecrets:
+  []
   # - array-of
   # - secret-names
 
 ## Additional environment variables
-envVarsExtra: []
+envVarsExtra:
+  []
   # - name: POSTGRES_USERNAME
   #   valueFrom:
   #     secretKeyRef:
@@ -282,7 +291,7 @@ persistentVolume:
 
   ## pgAdmin4 Persistent Volume Size
   ##
-  size: 10Gi
+  size: 30Gi
 
   ## pgAdmin4 Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
@@ -360,7 +369,8 @@ extraInitContainers: |
 containerPorts:
   http: 80
 
-resources: {}
+resources:
+  {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -425,7 +435,8 @@ templatedPodAnnotations: |-
 
 ## Pod labels
 ##
-podLabels: {}
+podLabels:
+  {}
   # key1: value1
   # key2: value2
 
@@ -447,7 +458,8 @@ test:
     repository: busybox
     tag: latest
   ## Resources request/limit for test-connection Pod
-  resources: {}
+  resources:
+    {}
     # limits:
     #   cpu: 50m
     #   memory: 32Mi
